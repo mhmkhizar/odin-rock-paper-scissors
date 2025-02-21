@@ -1,15 +1,31 @@
-getComputerChoice();
+const computerSelection = console.log(getComputerChoice());
+const humanSelection = console.log(getHumanChoice());
+
+let computerScore = 0;
+let humanScore = 0;
 
 function getComputerChoice() {
-  // get random number between 1 to 3
   const randomNumber = Math.floor(Math.random() * 3) + 1;
 
-  // return a choice on the bases of the generated number
   if (randomNumber === 1) {
-    return console.log("rock");
+    return "rock";
   } else if (randomNumber === 2) {
-    return console.log("paper");
+    return "paper";
   } else {
-    return console.log("scissors");
+    return "scissors";
+  }
+}
+
+function getHumanChoice() {
+  const userChoice = prompt("Rock, Paper or Scissors?");
+
+  if (
+    userChoice.toLowerCase() === "rock" ||
+    userChoice.toLowerCase() === "paper" ||
+    userChoice.toLowerCase() === "scissors"
+  ) {
+    return userChoice.toLowerCase();
+  } else {
+    return "Please choose Rock or Paper or Scissors only. Try again.";
   }
 }
