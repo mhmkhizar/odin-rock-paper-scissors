@@ -15,8 +15,6 @@ function getHumanChoice() {
   return humanChoice.toLowerCase();
 }
 
-playGame();
-
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
@@ -54,3 +52,5 @@ function playGame() {
     }
   }
 }
+
+playGame();
