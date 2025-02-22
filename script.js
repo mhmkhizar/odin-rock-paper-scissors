@@ -12,7 +12,11 @@ function getComputerChoice() {
 
 function getHumanChoice() {
   const humanChoice = prompt("Choose Rock, Paper or Scissors?");
-  return humanChoice.toLowerCase();
+  if (humanChoice === null || humanChoice === undefined) {
+    return humanChoice;
+  } else {
+    return humanChoice.toLowerCase();
+  }
 }
 
 function playGame() {
@@ -27,7 +31,11 @@ function playGame() {
   }
 
   function playRound(humanChoice, computerChoice) {
-    if (
+    if (humanChoice === null) {
+      console.log("Ok, we aren't playing now.");
+    } else if (humanChoice === "") {
+      console.warn("Please choose Rock, Paper or Scissors.");
+    } else if (
       !(
         humanChoice === "rock" ||
         humanChoice === "paper" ||
