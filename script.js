@@ -59,3 +59,5 @@ function playRound(humanChoice, computerChoice) {
     console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
   }
 }
+
+playRound(humanChoice, computerChoice);
