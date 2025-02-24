@@ -25,3 +25,37 @@ let computerScore = 0;
 
 const humanChoice = getHumanChoice();
 const computerChoice = getComputerChoice();
+
+function playRound(humanChoice, computerChoice) {
+  if (humanChoice === null) {
+    console.log("Ok, we aren't playing now.");
+  } else if (humanChoice === undefined || humanChoice === "") {
+    console.log("Please choose Rock, Paper or Scissors.");
+  } else if (
+    !(
+      humanChoice === "rock" ||
+      humanChoice === "paper" ||
+      humanChoice === "scissors"
+    )
+  ) {
+    console.log(
+      "Please choose only Rock, Paper, or Scissors (spelling matters, but case doesn't). Try again."
+    );
+  } else if (humanChoice === computerChoice) {
+    console.log("Uh-Oh! It's a draw.");
+  } else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  ) {
+    console.log(`You Chose: ${humanChoice}`);
+    console.log(`Computer Chose: ${computerChoice}`);
+    console.log(`You Won! ${humanChoice} beats ${computerChoice}`);
+  } else {
+    console.log(`You Chose: ${humanChoice}`);
+    console.log(`Computer Chose: ${computerChoice}`);
+    console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
+  }
+}
+
+playRound(humanChoice, computerChoice);
