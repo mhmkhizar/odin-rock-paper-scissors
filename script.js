@@ -48,10 +48,12 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice === "paper" && computerChoice === "rock") ||
     (humanChoice === "scissors" && computerChoice === "paper")
   ) {
+    humanScore++;
     console.log(`You Chose: ${humanChoice}`);
     console.log(`Computer Chose: ${computerChoice}`);
     console.log(`You Won! ${humanChoice} beats ${computerChoice}`);
   } else {
+    computerScore++;
     console.log(`You Chose: ${humanChoice}`);
     console.log(`Computer Chose: ${computerChoice}`);
     console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
