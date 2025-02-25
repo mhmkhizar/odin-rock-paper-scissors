@@ -74,6 +74,7 @@ function playGame() {
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log("Uh-Oh! It's a draw.");
+      console.log(`Score: You(${humanScore}) | Computer(${computerScore})`);
     } else if (
       (humanChoice === "rock" && computerChoice === "scissors") ||
       (humanChoice === "paper" && computerChoice === "rock") ||
@@ -87,6 +88,7 @@ function playGame() {
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log(`You Won! ${humanChoice} beats ${computerChoice}`);
+      console.log(`Score: You(${humanScore}) | Computer(${computerScore})`);
     } else {
       humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
       computerChoice =
@@ -96,6 +98,7 @@ function playGame() {
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
+      console.log(`Score: You(${humanScore}) | Computer(${computerScore})`);
     }
   }
 }
