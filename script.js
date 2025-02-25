@@ -50,15 +50,15 @@ function playGame() {
     }
   }
 
-  if (humanScore === computerScore && roundCount >= 5) {
+  if (humanScore === computerScore && roundCount <= 5) {
     console.log(
       `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nUh-Oh! It's a Draw.`
     );
-  } else if (humanScore > computerScore && roundCount >= 5) {
+  } else if (humanScore > computerScore && roundCount <= 5) {
     console.log(
       `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nCongratulations! You Won the Game.`
     );
-  } else if (humanScore < computerScore && roundCount >= 5) {
+  } else if (humanScore < computerScore && roundCount <= 5) {
     console.log(
       `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nUh-Oh! You Lose the Game. Try Again.`
     );
