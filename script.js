@@ -25,13 +25,14 @@ function getHumanChoice() {
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
-  let roundCount = 0;
+  let roundCount = 1;
 
-  for (roundCount; roundCount <= 5; roundCount++) {
+  while (roundCount <= 5) {
     const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
 
     playRound(humanSelection, computerSelection, roundCount);
+    roundCount++;
 
     if (humanSelection === null) {
       roundCount = 0;
@@ -49,7 +50,7 @@ function playGame() {
       roundCount--;
     }
 
-    if (roundCount === 5) {
+    if (roundCount > 5) {
       if (humanScore > computerScore) {
         console.log(
           `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nCongratulations! You Won the Game.`
