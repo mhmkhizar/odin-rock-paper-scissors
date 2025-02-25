@@ -26,6 +26,32 @@ function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
+  for (let i = 1; i <= 5; i++) {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection, i);
+
+    if (humanSelection === null) {
+      i = 1;
+      break;
+    } else if (
+      (humanSelection === undefined || humanSelection === "") &&
+      i >= 1
+    ) {
+      i--;
+    } else if (
+      !(
+        humanSelection === "rock" ||
+        humanSelection === "paper" ||
+        humanSelection === "scissors"
+      ) &&
+      i >= 1
+    ) {
+      i--;
+    }
+  }
+
   function playRound(humanChoice, computerChoice, count) {
     if (humanChoice === null) {
       console.warn("Ok, we aren't playing now.");
@@ -84,32 +110,6 @@ function playGame() {
         `Score Card: You(${humanScore}) | Computer(${computerScore})`
       );
       console.log(`------------------------`);
-    }
-  }
-
-  for (let i = 1; i <= 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection, i);
-
-    if (humanSelection === null) {
-      i = 1;
-      break;
-    } else if (
-      (humanSelection === undefined || humanSelection === "") &&
-      i >= 1
-    ) {
-      i--;
-    } else if (
-      !(
-        humanSelection === "rock" ||
-        humanSelection === "paper" ||
-        humanSelection === "scissors"
-      ) &&
-      i >= 1
-    ) {
-      i--;
     }
   }
 }
