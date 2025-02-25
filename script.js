@@ -25,34 +25,45 @@ function getHumanChoice() {
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
+  let roundCount = 1;
 
-  for (let i = 1; i <= 5; i++) {
+  for (roundCount; roundCount <= 5; roundCount++) {
     const humanSelection = getHumanChoice();
     const computerSelection = getComputerChoice();
 
-    playRound(humanSelection, computerSelection, i);
+    playRound(humanSelection, computerSelection, roundCount);
 
     if (humanSelection === null) {
-      i = 1;
+      roundCount = 1;
       break;
     } else if (
       (humanSelection === undefined || humanSelection === "") &&
-      i >= 1
+      roundCount >= 1
     ) {
-      i--;
+      roundCount--;
     } else if (
       !(
         humanSelection === "rock" ||
         humanSelection === "paper" ||
         humanSelection === "scissors"
       ) &&
-      i >= 1
+      roundCount >= 1
     ) {
-      i--;
+      roundCount--;
     }
   }
 
-  function playRound(humanChoice, computerChoice, count) {
+  if (humanScore === computerScore && roundCount === 6) {
+    return console.log(
+      `Final Score Card: You(${humanScore}) | Computer(${computerScore})`
+    );
+  } else if (humanScore > computerScore && roundCount === 6) {
+    return console.log(`WON`);
+  } else if (humanScore < computerScore && roundCount === 6) {
+    return console.log(`LOSE`);
+  }
+
+  function playRound(humanChoice, computerChoice, roundCount) {
     if (humanChoice === null) {
       console.warn("Ok, we aren't playing now.");
     } else if (humanChoice === undefined || humanChoice === "") {
@@ -71,8 +82,7 @@ function playGame() {
       humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
       computerChoice =
         computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
-      humanScore++;
-      console.log(`Round: ${count}`);
+      console.log(`Round: ${roundCount}`);
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log("Uh-Oh! It's a draw.");
@@ -89,7 +99,7 @@ function playGame() {
       computerChoice =
         computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
       humanScore++;
-      console.log(`Round: ${count}`);
+      console.log(`Round: ${roundCount}`);
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log(`You Won! ${humanChoice} beats ${computerChoice}`);
@@ -102,7 +112,7 @@ function playGame() {
       computerChoice =
         computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
       computerScore++;
-      console.log(`Round: ${count}`);
+      console.log(`Round: ${roundCount}`);
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
