@@ -25,7 +25,7 @@ function getHumanChoice() {
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
-  let roundCount = 1;
+  let roundCount = 0;
 
   for (roundCount; roundCount <= 5; roundCount++) {
     const humanSelection = getHumanChoice();
@@ -34,7 +34,7 @@ function playGame() {
     playRound(humanSelection, computerSelection, roundCount);
 
     if (humanSelection === null) {
-      roundCount = 1;
+      roundCount = 0;
       break;
     } else if (
       humanSelection === undefined ||
@@ -44,24 +44,22 @@ function playGame() {
         humanSelection === "paper" ||
         humanSelection === "scissors"
       ) &&
-        roundCount >= 1)
+        roundCount > 0)
     ) {
       roundCount--;
     }
-  }
 
-  if (humanScore === computerScore && roundCount <= 5) {
-    console.log(
-      `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nUh-Oh! It's a Draw.`
-    );
-  } else if (humanScore > computerScore && roundCount <= 5) {
-    console.log(
-      `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nCongratulations! You Won the Game.`
-    );
-  } else if (humanScore < computerScore && roundCount <= 5) {
-    console.log(
-      `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nUh-Oh! You Lose the Game. Try Again.`
-    );
+    if (roundCount === 5) {
+      if (humanScore > computerScore) {
+        console.log(
+          `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nCongratulations! You Won the Game.`
+        );
+      } else {
+        console.log(
+          `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nUh-Oh! You Lose the Game. Try Again.`
+        );
+      }
+    }
   }
 
   function playRound(humanChoice, computerChoice, roundCount) {
