@@ -20,18 +20,41 @@ function getHumanChoice() {
   }
 }
 
+playGame();
+
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
 
-  const humanSelection = getHumanChoice();
-  const computerSelection = getComputerChoice();
+  for (let i = 1; i <= 5; i++) {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
 
-  function playRound(humanChoice, computerChoice) {
+    playRound(humanSelection, computerSelection, i);
+
+    if ((humanSelection === undefined || humanSelection === "") && i >= 1) {
+      i--;
+    } else if (humanSelection === null) {
+      i = 0;
+      break;
+    } else if (
+      !(
+        humanSelection === "rock" ||
+        humanSelection === "paper" ||
+        humanSelection === "scissors"
+      ) &&
+      i > 1
+    ) {
+      i--;
+      break;
+    }
+  }
+
+  function playRound(humanChoice, computerChoice, count) {
     if (humanChoice === null) {
-      console.log("Ok, we aren't playing now.");
+      console.warn("Ok, we aren't playing now.");
     } else if (humanChoice === undefined || humanChoice === "") {
-      console.log("Please choose Rock, Paper or Scissors.");
+      console.warn("Please choose Rock, Paper or Scissors.");
     } else if (
       !(
         humanChoice === "rock" ||
@@ -39,7 +62,7 @@ function playGame() {
         humanChoice === "scissors"
       )
     ) {
-      console.log(
+      console.warn(
         "Please choose only Rock, Paper, or Scissors (spelling matters, but case doesn't). Try again."
       );
     } else if (humanChoice === computerChoice) {
@@ -47,6 +70,7 @@ function playGame() {
       computerChoice =
         computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
       humanScore++;
+      console.log(`Round: ${count}`);
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log("Uh-Oh! It's a draw.");
@@ -59,6 +83,7 @@ function playGame() {
       computerChoice =
         computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
       humanScore++;
+      console.log(`Round: ${count}`);
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log(`You Won! ${humanChoice} beats ${computerChoice}`);
@@ -67,11 +92,10 @@ function playGame() {
       computerChoice =
         computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
       computerScore++;
+      console.log(`Round: ${count}`);
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
     }
   }
-
-  playRound(humanSelection, computerSelection);
 }
