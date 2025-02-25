@@ -32,7 +32,6 @@ function playGame() {
     const computerSelection = getComputerChoice();
 
     playRound(humanSelection, computerSelection, roundCount);
-    roundCount++;
 
     if (humanSelection === null) {
       roundCount = 0;
@@ -49,6 +48,8 @@ function playGame() {
     ) {
       roundCount--;
     }
+
+    roundCount++;
 
     if (roundCount > 5) {
       if (humanScore > computerScore) {
