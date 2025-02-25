@@ -37,30 +37,31 @@ function playGame() {
       roundCount = 1;
       break;
     } else if (
-      (humanSelection === undefined || humanSelection === "") &&
-      roundCount >= 1
-    ) {
-      roundCount--;
-    } else if (
-      !(
+      humanSelection === undefined ||
+      humanSelection === "" ||
+      (!(
         humanSelection === "rock" ||
         humanSelection === "paper" ||
         humanSelection === "scissors"
       ) &&
-      roundCount >= 1
+        roundCount >= 1)
     ) {
       roundCount--;
     }
   }
 
-  if (humanScore === computerScore && roundCount === 6) {
-    return console.log(
-      `Final Score Card: You(${humanScore}) | Computer(${computerScore})`
+  if (humanScore === computerScore && roundCount >= 5) {
+    console.log(
+      `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nUh-Oh! It's a Draw.`
     );
-  } else if (humanScore > computerScore && roundCount === 6) {
-    return console.log(`WON`);
-  } else if (humanScore < computerScore && roundCount === 6) {
-    return console.log(`LOSE`);
+  } else if (humanScore > computerScore && roundCount >= 5) {
+    console.log(
+      `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nCongratulations! You Won the Game.`
+    );
+  } else if (humanScore < computerScore && roundCount >= 5) {
+    console.log(
+      `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nUh-Oh! You Lose the Game. Try Again.`
+    );
   }
 
   function playRound(humanChoice, computerChoice, roundCount) {
