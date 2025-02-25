@@ -1,3 +1,5 @@
+playGame();
+
 function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3) + 1;
 
@@ -20,35 +22,9 @@ function getHumanChoice() {
   }
 }
 
-playGame();
-
 function playGame() {
   let humanScore = 0;
   let computerScore = 0;
-
-  for (let i = 1; i <= 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection, i);
-
-    if ((humanSelection === undefined || humanSelection === "") && i >= 1) {
-      i--;
-    } else if (humanSelection === null) {
-      i = 0;
-      break;
-    } else if (
-      !(
-        humanSelection === "rock" ||
-        humanSelection === "paper" ||
-        humanSelection === "scissors"
-      ) &&
-      i > 1
-    ) {
-      i--;
-      break;
-    }
-  }
 
   function playRound(humanChoice, computerChoice, count) {
     if (humanChoice === null) {
@@ -74,7 +50,10 @@ function playGame() {
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log("Uh-Oh! It's a draw.");
-      console.log(`Score: You(${humanScore}) | Computer(${computerScore})`);
+      console.log(
+        `Score Card: You(${humanScore}) | Computer(${computerScore})`
+      );
+      console.log(`------------------------`);
     } else if (
       (humanChoice === "rock" && computerChoice === "scissors") ||
       (humanChoice === "paper" && computerChoice === "rock") ||
@@ -88,7 +67,10 @@ function playGame() {
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log(`You Won! ${humanChoice} beats ${computerChoice}`);
-      console.log(`Score: You(${humanScore}) | Computer(${computerScore})`);
+      console.log(
+        `Score Card: You(${humanScore}) | Computer(${computerScore})`
+      );
+      console.log(`------------------------`);
     } else {
       humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
       computerChoice =
@@ -98,7 +80,36 @@ function playGame() {
       console.log(`You Chose: ${humanChoice}`);
       console.log(`Computer Chose: ${computerChoice}`);
       console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
-      console.log(`Score: You(${humanScore}) | Computer(${computerScore})`);
+      console.log(
+        `Score Card: You(${humanScore}) | Computer(${computerScore})`
+      );
+      console.log(`------------------------`);
+    }
+  }
+
+  for (let i = 1; i <= 5; i++) {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection, i);
+
+    if (humanSelection === null) {
+      i = 1;
+      break;
+    } else if (
+      (humanSelection === undefined || humanSelection === "") &&
+      i >= 1
+    ) {
+      i--;
+    } else if (
+      !(
+        humanSelection === "rock" ||
+        humanSelection === "paper" ||
+        humanSelection === "scissors"
+      ) &&
+      i >= 1
+    ) {
+      i--;
     }
   }
 }
