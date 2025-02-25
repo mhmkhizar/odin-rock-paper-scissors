@@ -23,8 +23,8 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
 
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === null) {
@@ -60,4 +60,4 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-playRound(humanChoice, computerChoice);
+playRound(humanSelection, computerSelection);
