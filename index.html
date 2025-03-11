@@ -3,38 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="./script.js"></script>
     <title>Odin Rock Paper Scissors</title>
   </head>
   <body>
-    <header class="main-header">
-      <h1 class="main-heading">Rock Paper Scissors</h1>
-      <p class="round-count-text">Round: <span class="count">1</span>/5</p>
-    </header>
-
-    <section class="progress-section">
-      <div class="player-progress">
-        <p class="player-current-choice">❓</p>
-        <p class="player-current-score">Player: <span class="score">0</span></p>
-      </div>
-
-      <p class="vs-emoji">🆚</p>
-
-      <div class="computer-progress">
-        <p class="computer-current-choice">❓</p>
-        <p class="computer-current-score">
-          Computer: <span class="score">0</span>
+    <div class="main-container">
+      <header class="main-header">
+        <h1 class="main-heading">Rock Paper Scissors</h1>
+        <p class="round-count-text">Round: <span class="count">1</span></p>
+        <p class="commentary-text">
+          — "<span class="text">First to score 5 points wins the game.</span>"
         </p>
-      </div>
-    </section>
+      </header>
 
-    <section class="player-choice-section">
-      <div class="emojis-container">
-        <p class="rock-emoji">🪨</p>
-        <p class="paper-emoji">📄</p>
-        <p class="scissors-emoji">✂️</p>
-      </div>
-    </section>
+      <section class="progress-section">
+        <div class="player-progress">
+          <p class="player-current-choice">❓</p>
+          <p class="player-current-score">
+            Player: <span class="score">0</span>
+          </p>
+        </div>
+
+        <p class="vs-emoji">🆚</p>
+
+        <div class="computer-progress">
+          <p class="computer-current-choice">❓</p>
+          <p class="computer-current-score">
+            Computer: <span class="score">0</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="player-choice-section">
+        <div class="emojis-container">
+          <p class="rock-emoji">🪨</p>
+          <p class="paper-emoji">📄</p>
+          <p class="scissors-emoji">✂️</p>
+        </div>
+      </section>
+
+      <footer class="main-footer">
+        <p class="copyright-info">
+          Copyright © The Odin Project 2025 — Created By
+          <a href="#">Muhammad Khizar</a>
+        </p>
+      </footer>
+    </div>
   </body>
 </html>
