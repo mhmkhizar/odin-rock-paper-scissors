@@ -1,0 +1,101 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Inter", sans-serif;
+  height: 100%;
+}
+
+.main-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-header {
+  background-color: #222;
+  color: #ddd;
+  padding: 24px 0;
+}
+
+.main-heading,
+.round-count-text,
+.commentary-text {
+  text-align: center;
+}
+
+.main-heading,
+.round-count-text {
+  margin-bottom: 8px;
+}
+
+.main-heading {
+  margin-top: -8px;
+}
+
+.progress-section {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-progress,
+.computer-progress {
+  background-color: #222;
+  color: #ddd;
+  width: 250px;
+  height: 250px;
+  padding: 24px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vs-emoji {
+  font-size: 32px;
+}
+
+.player-current-choice,
+.computer-current-choice {
+  font-size: 96px;
+  margin-top: auto;
+}
+
+.player-current-score,
+.computer-current-score {
+  margin-top: auto;
+}
+
+.player-choice-section .emojis-container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.player-choice-section > .emojis-container > .rock-emoji,
+.paper-emoji,
+.scissors-emoji {
+  background-color: #222;
+  font-size: 48px;
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.main-footer {
+  background-color: #222;
+  color: #ddd;
+  text-align: center;
+  padding: 16px 0;
+}
+
+.main-footer a {
+  color: #ddd;
+}
