@@ -39,6 +39,10 @@ body {
   margin-top: -8px;
 }
 
+.commentary-text {
+  font-weight: 300;
+}
+
 .progress-section {
   display: flex;
   gap: 32px;
@@ -73,6 +77,7 @@ body {
 .player-current-score,
 .computer-current-score {
   margin-top: auto;
+  font-weight: 500;
 }
 
 .player-choice-section .emojis-container {
