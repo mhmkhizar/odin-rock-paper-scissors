@@ -101,7 +101,7 @@ body {
   padding: 16px;
   border-radius: 6px;
   cursor: default;
-  transition: all 0.07s;
+  transition: all 0.09s;
 }
 
 .main-footer {
@@ -116,6 +116,5 @@ body {
 }
 
 .highlight {
-  outline: 4px solid #00bfff;
-  outline-offset: -4px;
+  transform: scale(0.9);
 }
