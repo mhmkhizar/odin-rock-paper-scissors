@@ -66,12 +66,14 @@ body {
 
 .vs-emoji {
   font-size: 32px;
+  cursor: default;
 }
 
 .player-current-choice,
 .computer-current-choice {
   font-size: 96px;
   margin-top: auto;
+  cursor: default;
 }
 
 .player-current-score,
@@ -98,6 +100,7 @@ body {
   font-size: 48px;
   padding: 16px;
   border-radius: 6px;
+  cursor: default;
 }
 
 .main-footer {
@@ -109,4 +112,8 @@ body {
 
 .main-footer a {
   color: #ddd;
+}
+
+.choosen {
+  border: 2px solid red;
 }
