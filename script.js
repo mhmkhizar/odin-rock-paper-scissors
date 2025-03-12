@@ -1,4 +1,82 @@
-// playGame();
+playGame();
+
+function playGame() {
+  let playerScore = 0;
+  let computerScore = 0;
+  let roundCount = 0;
+
+  const playerChoices = document.querySelector(
+    ".player-choice-section > .emojis-container"
+  );
+  playerChoices.addEventListener("click", (e) => {
+    const playerCurrentChoice = getPlayerChoice(e);
+
+    if (playerCurrentChoice) {
+      e.target.classList.add("highlight");
+      e.target.addEventListener(
+        "transitionend",
+        function (e) {
+          if (e.propertyName === "transform") {
+            this.classList.remove("highlight");
+          }
+        },
+        { once: true }
+      );
+      roundCount++;
+      const computerCurrentChoice = getComputerChoice();
+      playRound(playerCurrentChoice, computerCurrentChoice, roundCount);
+    }
+  });
+
+  function playRound(playerChoice, computerChoice, roundCount) {
+    if (playerChoice === computerChoice) {
+      playerChoice =
+        playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
+      computerChoice =
+        computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
+      console.log(`Round: ${roundCount}`);
+      console.log(`You Chose: ${playerChoice}`);
+      console.log(`Computer Chose: ${computerChoice}`);
+      console.log("Uh-Oh! It's a draw.");
+      console.log(
+        `Score Card: You(${playerScore}) | Computer(${computerScore})`
+      );
+      console.log(`------------------------`);
+    } else if (
+      (playerChoice === "rock" && computerChoice === "scissors") ||
+      (playerChoice === "paper" && computerChoice === "rock") ||
+      (playerChoice === "scissors" && computerChoice === "paper")
+    ) {
+      playerScore++;
+      playerChoice =
+        playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
+      computerChoice =
+        computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
+      console.log(`Round: ${roundCount}`);
+      console.log(`You Chose: ${playerChoice}`);
+      console.log(`Computer Chose: ${computerChoice}`);
+      console.log(`You Won! ${playerChoice} beats ${computerChoice}`);
+      console.log(
+        `Score Card: You(${playerScore}) | Computer(${computerScore})`
+      );
+      console.log(`------------------------`);
+    } else {
+      computerScore++;
+      playerChoice =
+        playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
+      computerChoice =
+        computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
+      console.log(`Round: ${roundCount}`);
+      console.log(`You Chose: ${playerChoice}`);
+      console.log(`Computer Chose: ${computerChoice}`);
+      console.log(`You Lose! ${computerChoice} beats ${playerChoice}`);
+      console.log(
+        `Score Card: You(${playerScore}) | Computer(${computerScore})`
+      );
+      console.log(`------------------------`);
+    }
+  }
+}
 
 function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3) + 1;
@@ -12,115 +90,13 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  const humanChoice = prompt("Choose Rock, Paper or Scissors:");
+function getPlayerChoice(e) {
+  const validChoices = ["rock", "paper", "scissors"];
+  const choice = e.target.id;
 
-  if (humanChoice === null || humanChoice === undefined || humanChoice === "") {
-    return humanChoice;
-  } else {
-    return humanChoice.toLowerCase();
-  }
-}
-
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
-  let roundCount = 1;
-
-  while (roundCount <= 5) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection, roundCount);
-
-    if (humanSelection === null) {
-      roundCount = 0;
-      break;
-    } else if (
-      humanSelection === undefined ||
-      humanSelection === "" ||
-      (!(
-        humanSelection === "rock" ||
-        humanSelection === "paper" ||
-        humanSelection === "scissors"
-      ) &&
-        roundCount > 0)
-    ) {
-      roundCount--;
-    }
-
-    roundCount++;
-
-    if (roundCount > 5) {
-      if (humanScore > computerScore) {
-        console.log(
-          `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nCongratulations! You Won the Game.`
-        );
-      } else {
-        console.log(
-          `Final Score Card: You(${humanScore}) | Computer(${computerScore})\nUh-Oh! You Lose the Game. Try Again.`
-        );
-      }
-    }
+  if (validChoices.includes(choice)) {
+    return choice;
   }
 
-  function playRound(humanChoice, computerChoice, roundCount) {
-    if (humanChoice === null) {
-      console.warn("Ok, we aren't playing now.");
-    } else if (humanChoice === undefined || humanChoice === "") {
-      console.warn("Please choose Rock, Paper or Scissors.");
-    } else if (
-      !(
-        humanChoice === "rock" ||
-        humanChoice === "paper" ||
-        humanChoice === "scissors"
-      )
-    ) {
-      console.warn(
-        "Please choose only Rock, Paper, or Scissors (spelling matters, but case doesn't). Try again."
-      );
-    } else if (humanChoice === computerChoice) {
-      humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
-      computerChoice =
-        computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
-      console.log(`Round: ${roundCount}`);
-      console.log(`You Chose: ${humanChoice}`);
-      console.log(`Computer Chose: ${computerChoice}`);
-      console.log("Uh-Oh! It's a draw.");
-      console.log(
-        `Score Card: You(${humanScore}) | Computer(${computerScore})`
-      );
-      console.log(`------------------------`);
-    } else if (
-      (humanChoice === "rock" && computerChoice === "scissors") ||
-      (humanChoice === "paper" && computerChoice === "rock") ||
-      (humanChoice === "scissors" && computerChoice === "paper")
-    ) {
-      humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
-      computerChoice =
-        computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
-      humanScore++;
-      console.log(`Round: ${roundCount}`);
-      console.log(`You Chose: ${humanChoice}`);
-      console.log(`Computer Chose: ${computerChoice}`);
-      console.log(`You Won! ${humanChoice} beats ${computerChoice}`);
-      console.log(
-        `Score Card: You(${humanScore}) | Computer(${computerScore})`
-      );
-      console.log(`------------------------`);
-    } else {
-      humanChoice = humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1);
-      computerChoice =
-        computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
-      computerScore++;
-      console.log(`Round: ${roundCount}`);
-      console.log(`You Chose: ${humanChoice}`);
-      console.log(`Computer Chose: ${computerChoice}`);
-      console.log(`You Lose! ${computerChoice} beats ${humanChoice}`);
-      console.log(
-        `Score Card: You(${humanScore}) | Computer(${computerScore})`
-      );
-      console.log(`------------------------`);
-    }
-  }
+  return null;
 }
