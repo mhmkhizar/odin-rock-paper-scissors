@@ -23,70 +23,78 @@ function playGame() {
 
       const computerCurrentChoice = getComputerChoice();
 
-      playRound(playerCurrentChoice, computerCurrentChoice, roundCount);
+      ({ playerScore, computerScore, roundCount } = playRound(
+        playerCurrentChoice,
+        computerCurrentChoice,
+        playerScore,
+        computerScore,
+        roundCount
+      ));
     }
   });
+}
 
-  function playRound(playerChoice, computerChoice) {
-    roundCount++;
-    const roundCountParaSpan = document.querySelector(
-      ".round-count-text > .count"
-    );
-    const commentaryPara = document.querySelector(".commentary-text");
-    const commentaryParaSpan = document.querySelector(
-      ".commentary-text > .text"
-    );
-    const playerCurrentChoicePara = document.querySelector(
-      ".player-progress > .player-current-choice"
-    );
-    const playerCurrentScoreParaSpan = document.querySelector(
-      ".player-progress > .player-current-score > .score"
-    );
-    const computerCurrentChoicePara = document.querySelector(
-      ".computer-progress > .computer-current-choice"
-    );
-    const computerCurrentScoreParaSpan = document.querySelector(
-      ".computer-progress > .computer-current-score > .score"
-    );
+function playRound(
+  playerChoice,
+  computerChoice,
+  playerScore,
+  computerScore,
+  roundCount
+) {
+  roundCount++;
 
-    if (playerChoice === computerChoice) {
-      roundCountParaSpan.textContent = roundCount;
-      commentaryPara.classList.add("text-highlight");
-      commentaryParaSpan.textContent = "It's a draw.";
-      playerCurrentChoicePara.textContent =
-        convertChoiceTextToEmoji(playerChoice);
-      playerCurrentScoreParaSpan.textContent = playerScore;
-      computerCurrentChoicePara.textContent =
-        convertChoiceTextToEmoji(computerChoice);
-      computerCurrentScoreParaSpan.textContent = computerScore;
-    } else if (
-      (playerChoice === "rock" && computerChoice === "scissors") ||
-      (playerChoice === "paper" && computerChoice === "rock") ||
-      (playerChoice === "scissors" && computerChoice === "paper")
-    ) {
-      playerScore++;
-      roundCountParaSpan.textContent = roundCount;
-      commentaryPara.classList.add("text-highlight");
-      commentaryParaSpan.textContent = "You win.";
-      playerCurrentChoicePara.textContent =
-        convertChoiceTextToEmoji(playerChoice);
-      playerCurrentScoreParaSpan.textContent = playerScore;
-      computerCurrentChoicePara.textContent =
-        convertChoiceTextToEmoji(computerChoice);
-      computerCurrentScoreParaSpan.textContent = computerScore;
-    } else {
-      computerScore++;
-      roundCountParaSpan.textContent = roundCount;
-      commentaryPara.classList.add("text-highlight");
-      commentaryParaSpan.textContent = "You lose.";
-      playerCurrentChoicePara.textContent =
-        convertChoiceTextToEmoji(playerChoice);
-      playerCurrentScoreParaSpan.textContent = playerScore;
-      computerCurrentChoicePara.textContent =
-        convertChoiceTextToEmoji(computerChoice);
-      computerCurrentScoreParaSpan.textContent = computerScore;
-    }
+  const roundCountParaSpan = document.querySelector(
+    ".round-count-text > .count"
+  );
+  const commentaryPara = document.querySelector(".commentary-text");
+  const commentaryParaSpan = document.querySelector(".commentary-text > .text");
+  const playerCurrentChoicePara = document.querySelector(
+    ".player-progress > .player-current-choice"
+  );
+  const playerCurrentScoreParaSpan = document.querySelector(
+    ".player-progress > .player-current-score > .score"
+  );
+  const computerCurrentChoicePara = document.querySelector(
+    ".computer-progress > .computer-current-choice"
+  );
+  const computerCurrentScoreParaSpan = document.querySelector(
+    ".computer-progress > .computer-current-score > .score"
+  );
+
+  if (playerChoice === computerChoice) {
+    commentaryParaSpan.textContent = "It's a draw.";
+  } else if (
+    (playerChoice === "rock" && computerChoice === "scissors") ||
+    (playerChoice === "paper" && computerChoice === "rock") ||
+    (playerChoice === "scissors" && computerChoice === "paper")
+  ) {
+    playerScore++;
+    commentaryParaSpan.textContent = "You win.";
+  } else {
+    computerScore++;
+    commentaryParaSpan.textContent = "You lose.";
   }
+
+  roundCountParaSpan.textContent = roundCount;
+  commentaryPara.classList.add("text-highlight");
+  playerCurrentChoicePara.textContent = convertChoiceTextToEmoji(playerChoice);
+  playerCurrentScoreParaSpan.textContent = playerScore;
+  computerCurrentChoicePara.textContent =
+    convertChoiceTextToEmoji(computerChoice);
+  computerCurrentScoreParaSpan.textContent = computerScore;
+
+  return { playerScore, computerScore, roundCount };
+}
+
+function getPlayerChoice(e) {
+  const validChoices = ["rock", "paper", "scissors"];
+  const choice = e.target.id;
+
+  if (validChoices.includes(choice)) {
+    return choice;
+  }
+
+  return null;
 }
 
 function getComputerChoice() {
@@ -99,17 +107,6 @@ function getComputerChoice() {
   } else {
     return "scissors";
   }
-}
-
-function getPlayerChoice(e) {
-  const validChoices = ["rock", "paper", "scissors"];
-  const choice = e.target.id;
-
-  if (validChoices.includes(choice)) {
-    return choice;
-  }
-
-  return null;
 }
 
 function convertChoiceTextToEmoji(text) {
