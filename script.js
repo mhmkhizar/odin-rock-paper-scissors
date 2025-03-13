@@ -21,13 +21,14 @@ function playGame() {
         { once: true }
       );
 
-      roundCount++;
       const computerCurrentChoice = getComputerChoice();
+
       playRound(playerCurrentChoice, computerCurrentChoice, roundCount);
     }
   });
 
-  function playRound(playerChoice, computerChoice, roundCount) {
+  function playRound(playerChoice, computerChoice) {
+    roundCount++;
     const roundCountParaSpan = document.querySelector(
       ".round-count-text > .count"
     );
