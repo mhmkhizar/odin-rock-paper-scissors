@@ -144,7 +144,8 @@ body {
   min-width: 300px;
 }
 
-.popup-content h2 {
+.popup-content h2,
+.popup-content p {
   margin-bottom: 16px;
 }
 
