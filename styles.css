@@ -71,15 +71,15 @@ body {
   cursor: default;
 }
 
-.player-current-choice,
-.computer-current-choice {
+.player-choice,
+.computer-choice {
   font-size: 96px;
   margin-top: auto;
   cursor: default;
 }
 
-.player-current-score,
-.computer-current-score {
+.player-score,
+.computer-score {
   margin-top: auto;
   font-weight: 500;
 }
@@ -125,7 +125,7 @@ body {
   color: #00bfff;
 }
 
-.popup {
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -137,7 +137,7 @@ body {
   align-items: center;
 }
 
-.popup-content {
+.modal-content {
   background-color: #222;
   color: #ddd;
   padding: 32px;
@@ -146,8 +146,8 @@ body {
   min-width: 300px;
 }
 
-.popup-content h2,
-.popup-content p {
+.modal-content h2,
+.modal-content p {
   margin-bottom: 16px;
 }
 
