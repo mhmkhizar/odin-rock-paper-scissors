@@ -12,11 +12,11 @@ function playGame() {
     const playerCurrentChoice = getPlayerChoice(e);
 
     if (playerCurrentChoice) {
-      e.target.classList.add("highlight");
+      e.target.classList.add("button-press");
       e.target.addEventListener(
         "transitionend",
         (e) => {
-          e.target.classList.remove("highlight");
+          e.target.classList.remove("button-press");
         },
         { once: true }
       );
@@ -28,51 +28,62 @@ function playGame() {
   });
 
   function playRound(playerChoice, computerChoice, roundCount) {
+    const roundCountParaSpan = document.querySelector(
+      ".round-count-text > .count"
+    );
+    const commentaryPara = document.querySelector(".commentary-text");
+    const commentaryParaSpan = document.querySelector(
+      ".commentary-text > .text"
+    );
+    const playerCurrentChoicePara = document.querySelector(
+      ".player-progress > .player-current-choice"
+    );
+    const playerCurrentScoreParaSpan = document.querySelector(
+      ".player-progress > .player-current-score > .score"
+    );
+    const computerCurrentChoicePara = document.querySelector(
+      ".computer-progress > .computer-current-choice"
+    );
+    const computerCurrentScoreParaSpan = document.querySelector(
+      ".computer-progress > .computer-current-score > .score"
+    );
+
     if (playerChoice === computerChoice) {
-      playerChoice =
-        playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
-      computerChoice =
-        computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
-      console.log(`Round: ${roundCount}`);
-      console.log(`You Chose: ${playerChoice}`);
-      console.log(`Computer Chose: ${computerChoice}`);
-      console.log("Uh-Oh! It's a draw.");
-      console.log(
-        `Score Card: You(${playerScore}) | Computer(${computerScore})`
-      );
-      console.log(`------------------------`);
+      roundCountParaSpan.textContent = roundCount;
+      commentaryPara.classList.add("text-highlight");
+      commentaryParaSpan.textContent = "It's a draw.";
+      playerCurrentChoicePara.textContent =
+        convertChoiceTextToEmoji(playerChoice);
+      playerCurrentScoreParaSpan.textContent = playerScore;
+      computerCurrentChoicePara.textContent =
+        convertChoiceTextToEmoji(computerChoice);
+      computerCurrentScoreParaSpan.textContent = computerScore;
     } else if (
       (playerChoice === "rock" && computerChoice === "scissors") ||
       (playerChoice === "paper" && computerChoice === "rock") ||
       (playerChoice === "scissors" && computerChoice === "paper")
     ) {
       playerScore++;
-      playerChoice =
-        playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
-      computerChoice =
-        computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
-      console.log(`Round: ${roundCount}`);
-      console.log(`You Chose: ${playerChoice}`);
-      console.log(`Computer Chose: ${computerChoice}`);
-      console.log(`You Won! ${playerChoice} beats ${computerChoice}`);
-      console.log(
-        `Score Card: You(${playerScore}) | Computer(${computerScore})`
-      );
-      console.log(`------------------------`);
+      roundCountParaSpan.textContent = roundCount;
+      commentaryPara.classList.add("text-highlight");
+      commentaryParaSpan.textContent = "You win.";
+      playerCurrentChoicePara.textContent =
+        convertChoiceTextToEmoji(playerChoice);
+      playerCurrentScoreParaSpan.textContent = playerScore;
+      computerCurrentChoicePara.textContent =
+        convertChoiceTextToEmoji(computerChoice);
+      computerCurrentScoreParaSpan.textContent = computerScore;
     } else {
       computerScore++;
-      playerChoice =
-        playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
-      computerChoice =
-        computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
-      console.log(`Round: ${roundCount}`);
-      console.log(`You Chose: ${playerChoice}`);
-      console.log(`Computer Chose: ${computerChoice}`);
-      console.log(`You Lose! ${computerChoice} beats ${playerChoice}`);
-      console.log(
-        `Score Card: You(${playerScore}) | Computer(${computerScore})`
-      );
-      console.log(`------------------------`);
+      roundCountParaSpan.textContent = roundCount;
+      commentaryPara.classList.add("text-highlight");
+      commentaryParaSpan.textContent = "You lose.";
+      playerCurrentChoicePara.textContent =
+        convertChoiceTextToEmoji(playerChoice);
+      playerCurrentScoreParaSpan.textContent = playerScore;
+      computerCurrentChoicePara.textContent =
+        convertChoiceTextToEmoji(computerChoice);
+      computerCurrentScoreParaSpan.textContent = computerScore;
     }
   }
 }
@@ -98,4 +109,17 @@ function getPlayerChoice(e) {
   }
 
   return null;
+}
+
+function convertChoiceTextToEmoji(text) {
+  switch (text) {
+    case "rock":
+      return "🪨";
+    case "paper":
+      return "📄";
+    case "scissors":
+      return "✂️";
+    default:
+      return null;
+  }
 }
