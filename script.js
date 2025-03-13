@@ -15,13 +15,12 @@ function playGame() {
       e.target.classList.add("highlight");
       e.target.addEventListener(
         "transitionend",
-        function (e) {
-          if (e.propertyName === "transform") {
-            this.classList.remove("highlight");
-          }
+        (e) => {
+          e.target.classList.remove("highlight");
         },
         { once: true }
       );
+
       roundCount++;
       const computerCurrentChoice = getComputerChoice();
       playRound(playerCurrentChoice, computerCurrentChoice, roundCount);
