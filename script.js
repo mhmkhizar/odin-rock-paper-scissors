@@ -4,29 +4,19 @@ let playerScore = 0;
 let computerScore = 0;
 let roundCount = 0;
 
-const roundCountParaSpan = document.querySelector(".round-count-text > .count");
+const roundCountSpan = document.querySelector(".round-count-text > .count");
 const commentaryPara = document.querySelector(".commentary-text");
-const commentaryParaSpan = document.querySelector(".commentary-text > .text");
-const playerCurrentChoicePara = document.querySelector(
-  ".player-progress > .player-current-choice"
-);
-const playerCurrentScoreParaSpan = document.querySelector(
-  ".player-progress > .player-current-score > .score"
-);
-const computerCurrentChoicePara = document.querySelector(
-  ".computer-progress > .computer-current-choice"
-);
-const computerCurrentScoreParaSpan = document.querySelector(
-  ".computer-progress > .computer-current-score > .score"
-);
-const popup = document.getElementById("game-over-popup");
+const commentarySpan = document.querySelector(".commentary-text > .text");
+const playerChoicePara = document.querySelector(".player-choice");
+const playerScoreSpan = document.querySelector(".player-score .score");
+const computerChoicePara = document.querySelector(".computer-choice");
+const computerScoreSpan = document.querySelector(".computer-score .score");
+const gameOverModal = document.getElementById("game-over-modal");
 const resultText = document.getElementById("result-text");
 const playAgainBtn = document.getElementById("play-again");
 
 function playGame() {
-  const playerChoices = document.querySelector(
-    ".player-choice-section > .emojis-container"
-  );
+  const playerChoices = document.querySelector(".emojis-container");
 
   playerChoices.addEventListener("click", (e) => {
     const playerCurrentChoice = getPlayerChoice(e);
@@ -58,29 +48,28 @@ function playRound(playerChoice, computerChoice) {
   roundCount++;
 
   if (playerChoice === computerChoice) {
-    commentaryParaSpan.textContent = "It's a draw.";
+    commentarySpan.textContent = "It's a draw.";
   } else if (
     (playerChoice === "rock" && computerChoice === "scissors") ||
     (playerChoice === "paper" && computerChoice === "rock") ||
     (playerChoice === "scissors" && computerChoice === "paper")
   ) {
     playerScore++;
-    commentaryParaSpan.textContent = "You win.";
+    commentarySpan.textContent = "You win.";
   } else {
     computerScore++;
-    commentaryParaSpan.textContent = "You lose.";
+    commentarySpan.textContent = "You lose.";
   }
 
-  roundCountParaSpan.textContent = roundCount;
+  roundCountSpan.textContent = roundCount;
   commentaryPara.classList.add("text-highlight");
-  playerCurrentChoicePara.textContent = convertChoiceTextToEmoji(playerChoice);
-  playerCurrentScoreParaSpan.textContent = playerScore;
-  computerCurrentChoicePara.textContent =
-    convertChoiceTextToEmoji(computerChoice);
-  computerCurrentScoreParaSpan.textContent = computerScore;
+  playerChoicePara.textContent = convertChoiceTextToEmoji(playerChoice);
+  playerScoreSpan.textContent = playerScore;
+  computerChoicePara.textContent = convertChoiceTextToEmoji(computerChoice);
+  computerScoreSpan.textContent = computerScore;
 
   if (playerScore === 5 || computerScore === 5) {
-    popup.classList.remove("hidden");
+    gameOverModal.classList.remove("hidden");
     resultText.textContent =
       playerScore === 5 ? "Congratulations! You won!" : "Uh-Oh! Computer won!";
     playAgainBtn.addEventListener("click", resetGame);
@@ -128,12 +117,12 @@ function resetGame(e) {
   computerScore = 0;
   roundCount = 0;
 
-  popup.classList.add("hidden");
-  roundCountParaSpan.textContent = roundCount;
+  gameOverModal.classList.add("hidden");
+  roundCountSpan.textContent = roundCount;
   commentaryPara.classList.remove("text-highlight");
-  commentaryParaSpan.textContent = "First to score 5 points wins the game.";
-  playerCurrentChoicePara.textContent = "❓";
-  playerCurrentScoreParaSpan.textContent = playerScore;
-  computerCurrentChoicePara.textContent = "❓";
-  computerCurrentScoreParaSpan.textContent = computerScore;
+  commentarySpan.textContent = "First to score 5 points wins the game.";
+  playerChoicePara.textContent = "❓";
+  playerScoreSpan.textContent = playerScore;
+  computerChoicePara.textContent = "❓";
+  computerScoreSpan.textContent = computerScore;
 }
