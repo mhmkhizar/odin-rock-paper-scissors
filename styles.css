@@ -160,3 +160,7 @@ button#play-again {
 button#play-again:hover {
   background: rgba(0, 191, 255, 0.75);
 }
+
+.hidden {
+  display: none;
+}
