@@ -63,9 +63,9 @@ function playRound(playerChoice, computerChoice) {
 
   roundCountSpan.textContent = roundCount;
   commentaryPara.classList.add("text-highlight");
-  playerChoicePara.textContent = convertChoiceTextToEmoji(playerChoice);
+  playerChoicePara.textContent = convertTextToEmoji(playerChoice);
   playerScoreSpan.textContent = playerScore;
-  computerChoicePara.textContent = convertChoiceTextToEmoji(computerChoice);
+  computerChoicePara.textContent = convertTextToEmoji(computerChoice);
   computerScoreSpan.textContent = computerScore;
 
   if (playerScore === 5 || computerScore === 5) {
@@ -99,7 +99,7 @@ function getComputerChoice() {
   }
 }
 
-function convertChoiceTextToEmoji(text) {
+function convertTextToEmoji(text) {
   switch (text) {
     case "rock":
       return "🪨";
