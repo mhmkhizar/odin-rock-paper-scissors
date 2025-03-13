@@ -25,17 +25,15 @@
 
       <section class="progress-section">
         <div class="player-progress">
-          <p class="player-current-choice">❓</p>
-          <p class="player-current-score">You: <span class="score">0</span></p>
+          <p class="player-choice">❓</p>
+          <p class="player-score">You: <span class="score">0</span></p>
         </div>
 
         <p class="vs-emoji">🆚</p>
 
         <div class="computer-progress">
-          <p class="computer-current-choice">❓</p>
-          <p class="computer-current-score">
-            Computer: <span class="score">0</span>
-          </p>
+          <p class="computer-choice">❓</p>
+          <p class="computer-score">Computer: <span class="score">0</span></p>
         </div>
       </section>
 
@@ -57,8 +55,8 @@
       </footer>
     </div>
 
-    <div id="game-over-popup" class="popup hidden">
-      <div class="popup-content">
+    <div id="game-over-modal" class="modal hidden">
+      <div class="modal-content">
         <h2>Game Over!</h2>
         <p id="result-text"></p>
         <button id="play-again">Play Again</button>
