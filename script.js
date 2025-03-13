@@ -112,7 +112,7 @@ function convertTextToEmoji(text) {
   }
 }
 
-function resetGame(e) {
+function resetGame() {
   playerScore = 0;
   computerScore = 0;
   roundCount = 0;
