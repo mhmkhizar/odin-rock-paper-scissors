@@ -115,6 +115,10 @@ body {
   color: #ddd;
 }
 
-.highlight {
+.button-press {
   transform: scale(0.9);
+}
+
+.text-highlight {
+  color: #00bfff;
 }
