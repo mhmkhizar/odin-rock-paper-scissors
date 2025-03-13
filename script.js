@@ -1,13 +1,32 @@
 playGame();
 
-function playGame() {
-  let playerScore = 0;
-  let computerScore = 0;
-  let roundCount = 0;
+let playerScore = 0;
+let computerScore = 0;
+let roundCount = 0;
+const roundCountParaSpan = document.querySelector(".round-count-text > .count");
+const commentaryPara = document.querySelector(".commentary-text");
+const commentaryParaSpan = document.querySelector(".commentary-text > .text");
+const playerCurrentChoicePara = document.querySelector(
+  ".player-progress > .player-current-choice"
+);
+const playerCurrentScoreParaSpan = document.querySelector(
+  ".player-progress > .player-current-score > .score"
+);
+const computerCurrentChoicePara = document.querySelector(
+  ".computer-progress > .computer-current-choice"
+);
+const computerCurrentScoreParaSpan = document.querySelector(
+  ".computer-progress > .computer-current-score > .score"
+);
+const popup = document.getElementById("game-over-popup");
+const resultText = document.getElementById("result-text");
+const playAgainBtn = document.getElementById("play-again");
 
+function playGame() {
   const playerChoices = document.querySelector(
     ".player-choice-section > .emojis-container"
   );
+
   playerChoices.addEventListener("click", (e) => {
     const playerCurrentChoice = getPlayerChoice(e);
 
@@ -23,43 +42,19 @@ function playGame() {
 
       const computerCurrentChoice = getComputerChoice();
 
-      ({ playerScore, computerScore, roundCount } = playRound(
+      playRound(
         playerCurrentChoice,
         computerCurrentChoice,
         playerScore,
         computerScore,
         roundCount
-      ));
+      );
     }
   });
 }
 
-function playRound(
-  playerChoice,
-  computerChoice,
-  playerScore,
-  computerScore,
-  roundCount
-) {
+function playRound(playerChoice, computerChoice) {
   roundCount++;
-
-  const roundCountParaSpan = document.querySelector(
-    ".round-count-text > .count"
-  );
-  const commentaryPara = document.querySelector(".commentary-text");
-  const commentaryParaSpan = document.querySelector(".commentary-text > .text");
-  const playerCurrentChoicePara = document.querySelector(
-    ".player-progress > .player-current-choice"
-  );
-  const playerCurrentScoreParaSpan = document.querySelector(
-    ".player-progress > .player-current-score > .score"
-  );
-  const computerCurrentChoicePara = document.querySelector(
-    ".computer-progress > .computer-current-choice"
-  );
-  const computerCurrentScoreParaSpan = document.querySelector(
-    ".computer-progress > .computer-current-score > .score"
-  );
 
   if (playerChoice === computerChoice) {
     commentaryParaSpan.textContent = "It's a draw.";
@@ -83,7 +78,12 @@ function playRound(
     convertChoiceTextToEmoji(computerChoice);
   computerCurrentScoreParaSpan.textContent = computerScore;
 
-  return { playerScore, computerScore, roundCount };
+  if (playerScore === 5 || computerScore === 5) {
+    popup.classList.remove("hidden");
+    resultText.textContent =
+      playerScore === 5 ? "Congratulations! You won!" : "Uh-Oh! Computer won!";
+    playAgainBtn.addEventListener("click", resetGame);
+  }
 }
 
 function getPlayerChoice(e) {
@@ -120,4 +120,19 @@ function convertChoiceTextToEmoji(text) {
     default:
       return null;
   }
+}
+
+function resetGame(e) {
+  playerScore = 0;
+  computerScore = 0;
+  roundCount = 0;
+
+  popup.classList.add("hidden");
+  roundCountParaSpan.textContent = roundCount;
+  commentaryPara.classList.remove("text-highlight");
+  commentaryParaSpan.textContent = "First to score 5 points wins the game.";
+  playerCurrentChoicePara.textContent = "❓";
+  playerCurrentScoreParaSpan.textContent = playerScore;
+  computerCurrentChoicePara.textContent = "❓";
+  computerCurrentScoreParaSpan.textContent = computerScore;
 }
