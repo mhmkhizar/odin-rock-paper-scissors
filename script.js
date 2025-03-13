@@ -3,6 +3,7 @@ playGame();
 let playerScore = 0;
 let computerScore = 0;
 let roundCount = 0;
+
 const roundCountParaSpan = document.querySelector(".round-count-text > .count");
 const commentaryPara = document.querySelector(".commentary-text");
 const commentaryParaSpan = document.querySelector(".commentary-text > .text");
