@@ -69,8 +69,10 @@ function playRound(playerChoice, computerChoice) {
 
   if (playerScore === 5 || computerScore === 5) {
     gameOverModal.classList.remove("hidden");
+
     resultText.textContent =
       playerScore === 5 ? "Congratulations! You won!" : "Uh-Oh! Computer won!";
+
     playAgainBtn.addEventListener("click", resetGame);
   }
 }
