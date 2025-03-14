@@ -19,9 +19,9 @@ function playGame() {
   const playerChoices = document.querySelector(".emojis-container");
 
   playerChoices.addEventListener("click", (e) => {
-    const playerCurrentChoice = getPlayerChoice(e);
+    const playerSelection = getPlayerChoice(e);
 
-    if (playerCurrentChoice) {
+    if (playerSelection) {
       e.target.classList.add("button-press");
       e.target.addEventListener(
         "transitionend",
@@ -31,11 +31,11 @@ function playGame() {
         { once: true }
       );
 
-      const computerCurrentChoice = getComputerChoice();
+      const computerSelection = getComputerChoice();
 
       playRound(
-        playerCurrentChoice,
-        computerCurrentChoice,
+        playerSelection,
+        computerSelection,
         playerScore,
         computerScore,
         roundCount
