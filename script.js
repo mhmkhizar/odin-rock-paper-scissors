@@ -17,7 +17,6 @@ const playAgainBtn = document.querySelector("#play-again");
 
 function playGame() {
   const playerChoices = document.querySelector(".emojis-container");
-
   playerChoices.addEventListener("click", (e) => {
     const playerSelection = getPlayerChoice(e);
 
