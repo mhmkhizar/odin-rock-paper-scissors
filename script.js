@@ -11,9 +11,9 @@ const playerChoicePara = document.querySelector(".player-choice");
 const playerScoreSpan = document.querySelector(".player-score .score");
 const computerChoicePara = document.querySelector(".computer-choice");
 const computerScoreSpan = document.querySelector(".computer-score .score");
-const gameOverModal = document.getElementById("game-over-modal");
-const resultText = document.getElementById("result-text");
-const playAgainBtn = document.getElementById("play-again");
+const gameOverModal = document.querySelector("#game-over-modal");
+const resultText = document.querySelector("#result-text");
+const playAgainBtn = document.querySelector("#play-again");
 
 function playGame() {
   const playerChoices = document.querySelector(".emojis-container");
